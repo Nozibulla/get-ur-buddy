@@ -30,6 +30,10 @@
 
 
                                     {!! Form::close() !!}
+
+                                    @if (count($tweets)>0)
+
+                                    @if (count($latest)>0)
                                     
                                     <div class="clearfix">
                                         <div class=" panel panel-info panel-body col-md-11">
@@ -38,8 +42,12 @@
                                             <h6 style="color:#A194BB"> Tweeted at {{ $latest->created_at }}</h6 class="text-faded">
                                             </div>
                                         </div>
+                                        @else
+                                        <p>No Tweet yet.</p>
+                                        @endif
                                         <hr />
-                                        <ul class="media-list">
+                                        
+                                           <ul class="media-list">
                                             @foreach ($tweets as $tweet)
                                             <li class="media">
                                                 <div class="media-body">
@@ -61,6 +69,11 @@
                                                 @endforeach
 
                                             </ul>
+                                            @else <p>No tweets available</p>
+                                        @endif
+
+
+                                        
                                             <span class="text-danger">237K users active</span>
                                         </div>
                                     </div>

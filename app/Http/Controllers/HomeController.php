@@ -24,11 +24,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $tweets = Tweet::orderBy('created_at', 'desc')->get();
 
-        $latest = Tweet::orderBy('created_at', 'desc')->first();
+        $latest = Tweet::orderBy('created_at', 'desc')->where('user_id', $request->user()->id)->first();
 
         return view('home', compact('tweets', 'latest'));
     }

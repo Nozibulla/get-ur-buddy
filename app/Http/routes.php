@@ -25,7 +25,12 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::post('/tweet', 'TweetController@saveTweet');
 
+	Route::post('/follow_user', 'TweetController@followUser');
+
+	Route::post('/unfollow_user', 'TweetController@unfollowUser');
+
 	Route::get('/user/{username}', 'TweetController@userProfile');
+
 
 
 

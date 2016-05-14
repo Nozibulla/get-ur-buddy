@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'email', 'password',
+    'name', 'username', 'email', 'password',
     ];
 
     /**
@@ -21,11 +21,39 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+    'password', 'remember_token',
     ];
-
+    /**
+     * This function allows us to get a list of tweets by this user
+     * @return [type] [description]
+     */
     public function tweet() {
 
         return $this->hasMany('App\Tweet');
+    }
+
+    // This function allows us to get a list of users following us
+    public function followers()
+    {
+        return $this->belongsToMany('App\User', 'followers', 'follow_id', 'user_id')->withTimestamps();
+    }
+
+// Get all users we are following
+    public function following()
+    {
+        return $this->belongsToMany('App\User', 'followers', 'user_id', 'follow_id')->withTimestamps();
+    }
+
+    /**
+     * Determine if current user follows another user.
+     *
+     * @param User $otherUser
+     * @return bool
+     */
+    public function isFollowedBy(User $otherUser)
+    {
+        $idsWhoOtherUserFollows = $otherUser->following()->lists('follow_id')->toArray();
+
+        return in_array($this->id, $idsWhoOtherUserFollows);
     }
 }

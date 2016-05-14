@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Requests\TweetRequest;
 use App\Tweet;
 use App\User;
+use App\Follower;
 
 class TweetController extends Controller
 {
@@ -43,6 +44,40 @@ class TweetController extends Controller
 		$tweets = Tweet::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
 		return view('user/profile', compact('user', 'tweets'));
+	}
+
+	public function followUser(Request $request)
+	{
+		$user_id = $request->user_id;
+		$follow_id = $request->follow_id;
+
+		// Find user with user_id
+        $user1 = User::find($user_id);
+
+        // Find user with follow_id
+        $user2 = User::find($follow_id);
+
+        if ($user1 && $user2) {
+            $user1->following()->save($user2);
+        }
+
+		return 'success';
+	}
+
+	public function unfollowUser(Request $request)
+	{
+		$user_id = $request->user_id;
+
+		$follow_id = $request->follow_id;
+
+		$get_follower = Follower::where('user_id', $user_id)->where('follow_id', $follow_id)->first();
+
+		if($get_follower){
+
+			$get_follower->delete();
+		}
+ 
+        return 'success';
 	}
 
 	public function save_url_as_link($text)
