@@ -41,9 +41,15 @@ class TweetController extends Controller
 
 		$user = User::where('username', $username)->first();
 
+		$followers = count($user->followers);
+
+        $following = count($user->following);
+
+        $number_of_tweet = count($user->tweets);
+
 		$tweets = Tweet::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
-		return view('user/profile', compact('user', 'tweets'));
+		return view('user/profile', compact('user', 'tweets', 'followers', 'following', 'number_of_tweet' ));
 	}
 
 	public function followUser(Request $request)
@@ -52,14 +58,14 @@ class TweetController extends Controller
 		$follow_id = $request->follow_id;
 
 		// Find user with user_id
-        $user1 = User::find($user_id);
+		$user1 = User::find($user_id);
 
         // Find user with follow_id
-        $user2 = User::find($follow_id);
+		$user2 = User::find($follow_id);
 
-        if ($user1 && $user2) {
-            $user1->following()->save($user2);
-        }
+		if ($user1 && $user2) {
+			$user1->following()->save($user2);
+		}
 
 		return 'success';
 	}
@@ -76,8 +82,49 @@ class TweetController extends Controller
 
 			$get_follower->delete();
 		}
- 
-        return 'success';
+
+		return 'success';
+	}
+
+	public function deleteTweet(Request $request)
+	{
+		$id = $request->id;
+
+		$tweet = Tweet::findOrFail($id);
+
+		$tweet->delete();
+	}
+
+	public function followerList($id)
+	{
+		$user = User::findOrFail($id);
+
+		$followers = $user->followers;
+
+		$number_of_followers = count($followers);
+
+        $number_of_following = count($user->following);
+
+        $number_of_tweet = count($user->tweets);
+
+		return view('user/follower_list', compact('user', 'followers', 'number_of_followers', 'number_of_following', 'number_of_tweet'));
+	}
+
+	public function followingList($id)
+	{
+		$user = User::findOrFail($id);
+
+		//actually here followers is following but to reduce a page folling is used as followers :)  ;)
+
+		$followings = $user->following;
+
+		$number_of_followers = count($user->followers);
+
+        $number_of_following = count($followings);
+
+        $number_of_tweet = count($user->tweets);
+
+		return view('user/following_list', compact('user', 'followings', 'number_of_followers', 'number_of_following', 'number_of_tweet'));
 	}
 
 	public function save_url_as_link($text)

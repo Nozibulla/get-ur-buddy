@@ -27,7 +27,7 @@ class User extends Authenticatable
      * This function allows us to get a list of tweets by this user
      * @return [type] [description]
      */
-    public function tweet() {
+    public function tweets() {
 
         return $this->hasMany('App\Tweet');
     }

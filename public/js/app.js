@@ -6,7 +6,45 @@
 
 			$('.main').on('click','.follow_user', this.followUser);
 			$('.main').on('click','.unfollow_user', this.unfollowUser);
+			$('.main').on('click','.delete_tweet', this.deleteTweet);
 
+		},
+
+		deleteTweet: function(e){
+
+			e.preventDefault();
+
+			var clickedButton = $(this);
+
+			var id = clickedButton.data('id');
+
+			// alert(id);
+			// 
+			if (confirm("Do you really want to delete this Tweet?")) {
+
+				$.ajax({
+
+					type : "POST",
+
+					url  : "/deletetweet",
+
+					headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+
+					data : {id : id} 
+				})
+				.done(function(){
+
+					var currentPageUrl = window.location.href;
+
+					$('.media-list').load(currentPageUrl+' .media-list');
+
+				})
+				.fail(function(){
+
+					alert("error");
+
+				});
+			}
 		},
 
 		followUser: function(e){
@@ -16,6 +54,7 @@
 			var clickedButton = $(this);
 
 			var user_id = clickedButton.data('user-id');
+
 			var follow_id = clickedButton.data('follow-id');
 
 			// alert(user_id + follow_id);

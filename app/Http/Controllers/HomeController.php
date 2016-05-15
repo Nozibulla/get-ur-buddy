@@ -30,6 +30,12 @@ class HomeController extends Controller
 
         $latest = Tweet::orderBy('created_at', 'desc')->where('user_id', $request->user()->id)->first();
 
-        return view('home', compact('tweets', 'latest'));
+        $followers = count($request->user()->followers);
+
+        $following = count($request->user()->following);
+
+        $number_of_tweet = count($request->user()->tweets);
+
+        return view('home', compact('tweets', 'latest', 'followers', 'following', 'number_of_tweet' ));
     }
 }

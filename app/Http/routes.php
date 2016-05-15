@@ -29,7 +29,13 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::post('/unfollow_user', 'TweetController@unfollowUser');
 
+	Route::post('/deletetweet', 'TweetController@deleteTweet');
+
 	Route::get('/user/{username}', 'TweetController@userProfile');
+
+	Route::get('/followers_list/{id}', 'TweetController@followerList');
+
+	Route::get('/following_list/{id}', 'TweetController@followingList');
 
 
 
