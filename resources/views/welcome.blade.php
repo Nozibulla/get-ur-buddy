@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
 
-                    Welcome you have just joined in Twitter Please click on login into Twitter and Tweet  
+                    Welcome <strong>{{ $name }}</strong> have just joined in Twitter Please click on login into Twitter and Tweet  
 
                     <a href="{{ url('/login') }}" class="btn btn-primary">LogIn Now</a>
 

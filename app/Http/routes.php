@@ -11,11 +11,11 @@
 |
 */
 
-Route::get('/', 'WelcomeComtroller@login');
-Route::get('/welcome', 'WelcomeComtroller@welcome');
 
 
 Route::group(['middleware' => 'web'], function () {
+
+	Route::get('/', 'WelcomeComtroller@login');
 
 	Route::auth();
 
@@ -24,6 +24,10 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('/home', 'HomeController@index');
 
 	Route::post('/tweet', 'TweetController@saveTweet');
+
+	Route::get('/find_friend', 'TweetController@findFriendPage');
+
+	Route::post('/find_friend', 'TweetController@findFriend');
 
 	Route::post('/follow_user', 'TweetController@followUser');
 

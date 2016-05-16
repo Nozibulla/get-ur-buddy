@@ -69,8 +69,11 @@ trait RegistersUsers
         }
 
         // Auth::guard($this->getGuard())->login($this->create($request->all()));
+        
+        //Take the User Name and Send it to the view to Dispaly the welcome message
+        $name = $request->name;
 
-        return redirect('/welcome');
+        return view('welcome', compact('name'));
     }
 
     /**

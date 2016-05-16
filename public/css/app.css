@@ -1,10 +1,10 @@
 .panel-heading {
 
-    padding: 15px 15px;
+	padding: 15px 15px;
 }
 
 .btn {
-    margin-top: -6px;
+	margin-top: -6px;
 }
 
 .fa{
@@ -14,4 +14,22 @@
 
 .adjust_username{
 	margin-top: -7px;
+}
+
+/*for search form*/
+
+#imaginary_container{
+    margin-top:20%; /* Don't copy this */
+}
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
 }

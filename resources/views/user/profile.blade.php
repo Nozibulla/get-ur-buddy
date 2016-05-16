@@ -17,7 +17,7 @@
 
                                     @if ($user->isFollowedBy(Auth::user()))
 
-                                    <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Following</a>
+                                    <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Unfollow</a>
 
                                     @else 
 

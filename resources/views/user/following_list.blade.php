@@ -12,30 +12,31 @@
                         <div class="twt-wrapper">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Following of {{ $user->name }}    
+                                    {{ $user->name }} is Following {{ $number_of_following }} People 
                                 </div>
                                 <div class="panel-body tweet">
                                     <ul class="media-list">
+                                    @if (count($followings))
                                         @foreach ($followings as $following)
                                         <li class="media">
                                             <div class="media-body">
-                                               @if (Auth::user()->id == $user->id)
+                                               @if (Auth::user()->id != $following->id)
                                                <span class="text-muted pull-right" style="margin-top: 27px; margin-right: 12px">
-                                                @if ($user->isFollowedBy($following))
+                                                @if ($following->isFollowedBy(Auth::user()))
 
-                                                <a href="#" class="btn btn-primary pull-right follow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Follow</a>
+                                                <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Unfollow</a>
 
                                                 @else 
 
-                                                <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Following</a>
+                                                 <a href="#" class="btn btn-primary pull-right follow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Follow</a>
 
                                                 @endif
                                                 
                                             </span>
                                             @endif
                                             <div class=" panel panel-info panel-body">
-                                                <strong class="text-primary">@<a href="{{ url('/user', $user->username) }}">{{ $following->username }}</a></strong> Latest Tweet Here
-                                                <h6 style="color:#A194BB"> Tweeted at {date here}</h6 class="text-faded">
+                                                <strong class="text-primary">@<a href="{{ url('/user', $following->username) }}">{{ $following->username }}</a></strong> {{ $following->tweets[0]['tweet'] }}
+                                                <h6 style="color:#A194BB">  time here</h6 class="text-faded">
                                                 </div>
 
                                             </div>
@@ -43,6 +44,9 @@
                                         @endforeach
 
                                     </ul>
+
+                                    @else <p>No following found</p>
+                                    @endif
                                     <span class="text-danger">237K users active</span>
                                 </div>
                             </div>

@@ -32,6 +32,12 @@ class User extends Authenticatable
         return $this->hasMany('App\Tweet');
     }
 
+    /**
+     * Get the Latest tweet of a user
+     * 
+     */
+    
+
     // This function allows us to get a list of users following us
     public function followers()
     {

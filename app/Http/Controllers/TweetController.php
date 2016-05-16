@@ -52,6 +52,16 @@ class TweetController extends Controller
 		return view('user/profile', compact('user', 'tweets', 'followers', 'following', 'number_of_tweet' ));
 	}
 
+	public function findFriendPage()
+	{
+		return view('user/find_friend');
+	}
+
+	public function findFriend(Request $request)
+	{
+		return $request->search;
+	}
+
 	public function followUser(Request $request)
 	{
 		$user_id = $request->user_id;
@@ -114,9 +124,15 @@ class TweetController extends Controller
 	{
 		$user = User::findOrFail($id);
 
-		//actually here followers is following but to reduce a page folling is used as followers :)  ;)
-
 		$followings = $user->following;
+
+		// foreach ($followings as $following) {
+			
+		// 	$following_detail['name'] = $following->name;
+		// 	$following_detail['username'] = $following->username;
+		// 	$following_detail['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $following->id)->first();
+
+		// }
 
 		$number_of_followers = count($user->followers);
 

@@ -31,6 +31,12 @@ class AuthController extends Controller
     protected $redirectTo = '/home';
 
     /**
+     * Use username instead of email to authenticate a user.
+     */
+    
+    protected $username = 'username';
+
+    /**
      * Create a new authentication controller instance.
      *
      * @return void
@@ -49,10 +55,10 @@ class AuthController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|max:255',
-            'username' => 'required|max:255|alpha_dash',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'name' => 'required|max:20|min:4',
+            'username' => 'required|max:20|min:4|alpha_dash|unique:users',
+            'email' => 'required|email|max:100|unique:users',
+            'password' => 'required|min:4|max:8|confirmed',
         ]);
     }
 
