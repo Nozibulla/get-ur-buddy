@@ -45,7 +45,7 @@
                                             </div>
                                         </div>
                                         @else
-                                        <p>No Tweet yet.</p>
+                                        <p class="text-danger">No Tweet yet.</p>
                                         @endif
                                         <hr />
                                         
@@ -72,7 +72,7 @@
 
                                             </ul>
                                             {{ $tweets->links() }}
-                                            @else <p>No tweets available</p>
+                                            @else <p class="text-danger">No tweets available</p>
                                             @endif
 
                                         </div>

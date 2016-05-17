@@ -30,6 +30,8 @@
                                 </div>
                                 <div class="panel-body tweet">
                                     <ul class="media-list">
+                                    @if (count($tweets)>0)
+                                    
                                         @foreach ($tweets as $tweet)
                                         <li class="media">
                                             <div class="media-body">
@@ -50,6 +52,10 @@
                                             </div>
                                         </li>
                                         @endforeach
+
+                                        @else <p class="text-danger">No Tweet Yet!</p>
+
+                                        @endif
 
                                     </ul>
                                 

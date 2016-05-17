@@ -35,8 +35,20 @@
                                             </span>
                                             @endif
                                             <div class=" panel panel-info panel-body">
-                                                <strong class="text-primary">@<a href="{{ url('/user', $follower->username) }}">{{ $follower->username }}</a></strong> {{ $follower['latest_tweet']->tweet }}
+                                                <strong class="text-primary">@<a href="{{ url('/user', $follower->username) }}">{{ $follower->username }}</a></strong>
+
+                                                @if (count($follower['latest_tweet'])>0)
+                                                
+                                                {{ $follower['latest_tweet']->tweet }}
+                                                
                                                 <h6 style="color:#A194BB">{{ $follower['latest_tweet']->created_at }}</h6 class="text-faded">
+
+                                                @else
+                                                
+                                                <p>No tweet yet!</p>
+                                                
+                                                @endif
+
                                                 </div>
 
                                             </div>
@@ -49,7 +61,7 @@
 
                                     {!! $followers->links() !!}
 
-                                    @else <p>No following found</p>
+                                    @else <p class="text-danger">No following found</p>
                                     @endif
                                    
                                 </div>

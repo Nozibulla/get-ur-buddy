@@ -33,6 +33,11 @@ class TweetController extends Controller
 
 	}
 
+	/**
+	 * Shows a user profile and corresponding users followers and followings
+	 * and number of tweets
+	 */
+
 	public function userProfile(Request $request)
 	{
 		$username = $request->username;
@@ -52,10 +57,18 @@ class TweetController extends Controller
 		return view('user/profile', compact('user', 'tweets', 'followers', 'following', 'number_of_tweet' ));
 	}
 
+	/**
+	 * Show Find friend Page
+	 */
+
 	public function findFriendPage()
 	{
 		return view('user/find_friend');
 	}
+
+	/**
+	 * Shows search list in a view with follow and unfollow button
+	 */
 
 	public function findFriend(Request $request)
 	{
@@ -70,6 +83,10 @@ class TweetController extends Controller
 
 		return view('user/search_result', compact('users', 'query'));
 	}
+
+	/**
+	 * Follow a user
+	 */
 
 	public function followUser(Request $request)
 	{
@@ -89,6 +106,10 @@ class TweetController extends Controller
 		return 'success';
 	}
 
+	/**
+	 * Unfollow a user
+	 */
+
 	public function unfollowUser(Request $request)
 	{
 		$user_id = $request->user_id;
@@ -105,6 +126,10 @@ class TweetController extends Controller
 		return 'success';
 	}
 
+	/**
+	 * Delete a tweet
+	 */
+
 	public function deleteTweet(Request $request)
 	{
 		$id = $request->id;
@@ -114,12 +139,15 @@ class TweetController extends Controller
 		$tweet->delete();
 	}
 
+
+
 	public function followerList($id)
 	{
 		$user = User::findOrFail($id);
 
 		$followers = $user->followers()->simplePaginate(10);
 
+		// Get latest tweet of all Followers
 		foreach ($followers as $follower) {
 
 			$follower['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $follower->id)->first();
@@ -141,6 +169,7 @@ class TweetController extends Controller
 
 		$followings = $user->following()->simplePaginate(10);
 
+		// Get latest tweet of all Followings
 		foreach ($followings as $following) {
 
 			$following['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $following->id)->first();
@@ -155,6 +184,11 @@ class TweetController extends Controller
 
 		return view('user/following_list', compact('user', 'followings', 'number_of_followers', 'number_of_following', 'number_of_tweet'));
 	}
+
+	/**
+	 * Search for url in link and cast it to anchor tag and wrap it in a paragraph tag
+	 *  so the link is always in new line
+	 */
 
 	public function save_url_as_link($text)
 	{

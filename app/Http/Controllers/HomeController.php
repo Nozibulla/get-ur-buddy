@@ -20,7 +20,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show the Users Timeline with Tweets and follower and following lists and Number of Tweets.
      *
      * @return \Illuminate\Http\Response
      */
