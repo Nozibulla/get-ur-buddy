@@ -58,6 +58,7 @@
 			var follow_id = clickedButton.data('follow-id');
 
 			// alert(user_id + follow_id);
+			clickedButton.text('Unfollow')
 			
 			$.ajax({
 
@@ -72,9 +73,10 @@
 			.done(function(message){
 
 				if(message){
+
 					var currentPageUrl = window.location.href;
 
-					$('.user_login').load(currentPageUrl+' .user_login');
+					// $('.user_login').load(currentPageUrl+' .user_login');
 				}
 
 			})
@@ -92,7 +94,10 @@
 			var clickedButton = $(this);
 
 			var user_id = clickedButton.data('user-id');
+
 			var follow_id = clickedButton.data('follow-id');
+
+			clickedButton.text('Follow')
 
 			// alert(user_id + follow_id);
 			
@@ -109,11 +114,13 @@
 			.done(function(message){
 
 				// alert(message);
+				// 
+				
 
 				if(message){
 					var currentPageUrl = window.location.href;
 
-					$('.user_login').load(currentPageUrl+' .user_login');
+					// $('.user_login').load(currentPageUrl+' .user_login');
 				}
 
 			})

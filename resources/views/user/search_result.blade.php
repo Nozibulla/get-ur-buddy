@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<section class="user_login">
 <form class="form-horizontal" role="form" method="POST" action="{{ url('/find_friend') }}">
     {!! csrf_field() !!}
     <div class="container">
@@ -21,7 +22,6 @@
     </div>
 </form>
 <hr>
-<section class="user_login">
     <div class="container main">
         <div class="row">
             <div class="col-md-8">
@@ -36,25 +36,33 @@
                                 </div>
                                 <div class="panel-body tweet">
                                     <ul class="media-list">
+
                                         @if (count($users)) 
                                         
                                         @foreach ($users as $user)
-                                        
-                                                                                
+                                                                                  
                                         <li class="media">
+
                                             <div class="media-body">
+
                                              @if (Auth::user()->id != $user->id)
                                              
                                              <span class="text-muted pull-right" style="margin-top: 27px; margin-right: 12px">
+
                                                 @if (!$user->isFollowedBy(Auth::user()))
 
                                                  <a href="#" class="btn btn-primary pull-right follow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Follow</a>
+
                                                  @else 
+
                                                  <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Unfollow</a>
 
+                                                 @endif
+
                                             </span>
-                                            @endif
-                                            @endif
+
+                                            
+                                            
                                             <div class=" panel panel-info panel-body">
                                                 <strong class="text-primary">@<a href="{{ url('/user', $user->username) }}">{{ $user->username }}</a></strong> {{ $user['latest_tweet']->tweet }}
                                                 <h6 style="color:#A194BB">{{ $user['latest_tweet']->created_at }}</h6 class="text-faded">
@@ -63,6 +71,8 @@
                                             </div>
 
                                         </li> 
+
+                                        @endif
 
                                         @endforeach
 
