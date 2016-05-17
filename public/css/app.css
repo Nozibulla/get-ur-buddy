@@ -18,8 +18,12 @@
 
 /*for search form*/
 
+#top_space{
+	margin-top:20%;
+}
+
 #imaginary_container{
-    margin-top:20%; /* Don't copy this */
+    margin-top:5px; /* Don't copy this */ 
 }
 .stylish-input-group .input-group-addon{
     background: white !important; 

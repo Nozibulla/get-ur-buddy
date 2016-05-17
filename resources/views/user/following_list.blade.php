@@ -24,19 +24,19 @@
                                                <span class="text-muted pull-right" style="margin-top: 27px; margin-right: 12px">
                                                 @if ($following->isFollowedBy(Auth::user()))
 
-                                                <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Unfollow</a>
+                                                <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $following->id }}">Unfollow</a>
 
                                                 @else 
 
-                                                 <a href="#" class="btn btn-primary pull-right follow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $user->id }}">Follow</a>
+                                                 <a href="#" class="btn btn-primary pull-right follow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $following->id }}">Follow</a>
 
                                                 @endif
                                                 
                                             </span>
                                             @endif
                                             <div class=" panel panel-info panel-body">
-                                                <strong class="text-primary">@<a href="{{ url('/user', $following->username) }}">{{ $following->username }}</a></strong> {{ $following->tweets[0]['tweet'] }}
-                                                <h6 style="color:#A194BB">  time here</h6 class="text-faded">
+                                                <strong class="text-primary">@<a href="{{ url('/user', $following->username) }}">{{ $following->username }}</a></strong> {{ $following['latest_tweet']->tweet }}
+                                                <h6 style="color:#A194BB">{{ $following['latest_tweet']->created_at }}</h6 class="text-faded">
                                                 </div>
 
                                             </div>
@@ -45,9 +45,11 @@
 
                                     </ul>
 
+                                    {!! $followings->links() !!}
+
                                     @else <p>No following found</p>
                                     @endif
-                                    <span class="text-danger">237K users active</span>
+                                    
                                 </div>
                             </div>
                         </div>

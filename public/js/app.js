@@ -74,7 +74,7 @@
 				if(message){
 					var currentPageUrl = window.location.href;
 
-					$('.twt-wrapper').load(currentPageUrl+' .twt-wrapper');
+					$('.user_login').load(currentPageUrl+' .user_login');
 				}
 
 			})
@@ -113,7 +113,7 @@
 				if(message){
 					var currentPageUrl = window.location.href;
 
-					$('.twt-wrapper').load(currentPageUrl+' .twt-wrapper');
+					$('.user_login').load(currentPageUrl+' .user_login');
 				}
 
 			})

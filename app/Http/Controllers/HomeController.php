@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $tweets = Tweet::orderBy('created_at', 'desc')->get();
+        $tweets = Tweet::orderBy('created_at', 'desc')->simplePaginate(10);
 
         $latest = Tweet::orderBy('created_at', 'desc')->where('user_id', $request->user()->id)->first();
 

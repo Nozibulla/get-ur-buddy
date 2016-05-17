@@ -71,12 +71,10 @@
                                                 @endforeach
 
                                             </ul>
+                                            {{ $tweets->links() }}
                                             @else <p>No tweets available</p>
                                             @endif
 
-
-
-                                            <span class="text-danger">237K users active</span>
                                         </div>
                                     </div>
                                 </div>

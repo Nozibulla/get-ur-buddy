@@ -59,7 +59,16 @@ class TweetController extends Controller
 
 	public function findFriend(Request $request)
 	{
-		return $request->search;
+		$query = $request->search;
+
+		$users = User::where('name', 'LIKE', "%$query%")->orderBy('created_at', 'desc')->paginate(10);
+
+		foreach ($users as $user) {
+			
+			$user['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $user->id)->first();
+		}
+
+		return view('user/search_result', compact('users', 'query'));
 	}
 
 	public function followUser(Request $request)
@@ -109,7 +118,13 @@ class TweetController extends Controller
 	{
 		$user = User::findOrFail($id);
 
-		$followers = $user->followers;
+		$followers = $user->followers()->simplePaginate(10);
+
+		foreach ($followers as $follower) {
+
+			$follower['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $follower->id)->first();
+
+		}
 
 		$number_of_followers = count($followers);
 
@@ -124,15 +139,13 @@ class TweetController extends Controller
 	{
 		$user = User::findOrFail($id);
 
-		$followings = $user->following;
+		$followings = $user->following()->simplePaginate(10);
 
-		// foreach ($followings as $following) {
-			
-		// 	$following_detail['name'] = $following->name;
-		// 	$following_detail['username'] = $following->username;
-		// 	$following_detail['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $following->id)->first();
+		foreach ($followings as $following) {
 
-		// }
+			$following['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $following->id)->first();
+
+		}
 
 		$number_of_followers = count($user->followers);
 

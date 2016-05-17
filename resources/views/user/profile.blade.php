@@ -52,7 +52,7 @@
                                         @endforeach
 
                                     </ul>
-                                    <span class="text-danger">237K users active</span>
+                                
                                 </div>
                             </div>
                         </div>
