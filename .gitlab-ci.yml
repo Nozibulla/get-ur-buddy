@@ -3,7 +3,7 @@ before_script:
 
 variables:
   MYSQL_DATABASE: jptwitter
-  MYSQL_ROOT_PASSWORD:
+  MYSQL_ROOT_PASSWORD: secret
 
 phpunit:php5.5:mysql5.6:
   image: php:5.5
