@@ -2,8 +2,8 @@ before_script:
   - bash .gitlab-ci.sh
 
 variables:
-  MYSQL_DATABASE: project_name
-  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_DATABASE: jptwitter
+  MYSQL_ROOT_PASSWORD:
 
 phpunit:php5.5:mysql5.6:
   image: php:5.5
