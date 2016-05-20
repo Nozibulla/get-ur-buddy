@@ -48,9 +48,9 @@ class TweetController extends Controller
 
 		$followers = count($user->followers);
 
-        $following = count($user->following);
+		$following = count($user->following);
 
-        $number_of_tweet = count($user->tweets);
+		$number_of_tweet = count($user->tweets);
 
 		$tweets = Tweet::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
@@ -74,14 +74,40 @@ class TweetController extends Controller
 	{
 		$query = $request->search;
 
-		$users = User::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('created_at', 'desc')->paginate(10);
+		$selected = $request->select_option;
 
-		foreach ($users as $user) {
+		// return $selected;
+
+		if($selected && $query){
+
+
+			if($selected == 'user'){
+
+				$users = User::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('created_at', 'desc')->simplePaginate(1);
+
+				foreach ($users as $user) {
+
+					$user['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $user->id)->first();
+				}
+
+				return view('user/search_result', compact('users', 'selected', 'query'));
+
+
+			}elseif($selected == 'tweet'){
+
+				$tweets = Tweet::where('tweet', 'LIKE', "%$query%")->orderBy('created_at', 'desc')->simplePaginate(10);
+
+				// return $tweets;
+
+				return view('user/search_result_tweet', compact('tweets', 'selected', 'query'));
+				
+			}
+
+
+
 			
-			$user['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $user->id)->first();
-		}
 
-		return view('user/search_result', compact('users', 'query'));
+		}
 	}
 
 	/**
@@ -156,9 +182,9 @@ class TweetController extends Controller
 
 		$number_of_followers = count($followers);
 
-        $number_of_following = count($user->following);
+		$number_of_following = count($user->following);
 
-        $number_of_tweet = count($user->tweets);
+		$number_of_tweet = count($user->tweets);
 
 		return view('user/follower_list', compact('user', 'followers', 'number_of_followers', 'number_of_following', 'number_of_tweet'));
 	}
@@ -178,9 +204,9 @@ class TweetController extends Controller
 
 		$number_of_followers = count($user->followers);
 
-        $number_of_following = count($followings);
+		$number_of_following = count($followings);
 
-        $number_of_tweet = count($user->tweets);
+		$number_of_tweet = count($user->tweets);
 
 		return view('user/following_list', compact('user', 'followings', 'number_of_followers', 'number_of_following', 'number_of_tweet'));
 	}

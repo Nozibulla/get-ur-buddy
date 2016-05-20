@@ -1,3 +1,8 @@
+
+body{
+    margin-top:20px;
+}
+
 .panel-heading {
 
 	padding: 15px 15px;
@@ -18,13 +23,18 @@
 
 /*for search form*/
 
-#top_space{
+.top_space{
 	margin-top:20%;
 }
 
-#imaginary_container{
-    margin-top:5px; /* Don't copy this */ 
+.imaginary_container{
+    margin-top:-4px; /* Don't copy this */ 
 }
+
+.btn_fix {
+	margin-bottom: 6px;
+}
+
 .stylish-input-group .input-group-addon{
     background: white !important; 
 }
@@ -33,7 +43,20 @@
 	box-shadow:0 0 0; 
 	border-color:#ccc;
 }
+
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+
+.ddl-title{
+  background-color:#5bc0de !important;
+  color:#fff !important;
+  font-style:italic;
+  font-size:80%;
+}
+  
+.ddl-select.input-group-btn:first-child>.btn-group:not(:first-child)>.btn {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
