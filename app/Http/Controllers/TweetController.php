@@ -83,7 +83,7 @@ class TweetController extends Controller
 
 			if($selected == 'user'){
 
-				$users = User::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('created_at', 'desc')->simplePaginate(1);
+				$users = User::where('name', 'LIKE', "%$query%")->orWhere('username', 'LIKE', "%$query%")->orderBy('created_at', 'desc')->simplePaginate(10);
 
 				foreach ($users as $user) {
 

@@ -44,7 +44,7 @@
                                     @foreach ($tweets as $tweet)
                                     <li class="media">
                                         <div class="media-body">
-
+                                        @if (Auth::user()->id != $tweet->user->id)
                                          <span class="text-muted pull-right" style="margin-top: 27px; margin-right: 12px">
                                             @if (!$tweet->user->isFollowedBy(Auth::user()))
                                             <a href="#" class="btn btn-primary pull-right follow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $tweet->user->id }}">Follow</a>
@@ -52,6 +52,7 @@
                                             <a href="#" class="btn btn-primary pull-right unfollow_user" data-user-id="{{ Auth::user()->id }}" data-follow-id ="{{ $tweet->user->id }}">Unfollow</a>
                                             @endif
                                         </span>
+                                        @endif
                                         <div class=" panel panel-info panel-body">
                                             <strong class="text-primary">
                                                 @<a href="{{ url('/user', $tweet->user->username) }}">
