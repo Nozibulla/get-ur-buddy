@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-8">
 
-                <div class="row">
+                <div class="">
                     <div class="">
                         <!-- TWEET WRAPPER START -->
                         <div class="twt-wrapper">
@@ -85,14 +85,14 @@
 
 
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 right_side">
                         <p><strong class="text-primary adjust_username"><a href="{{ url('/user', $logged_user->username) }}">{{ $logged_user->name }}</a>
                         @<a href="{{ url('/user', $logged_user->username) }}">{{ $logged_user->username }}</a></strong></p>
                         <p>
                             <a href="{{ url('/followers_list', $logged_user->id) }}" class="btn btn-primary">{{ $followers }} Followers</a>
                             <a href="{{ url('/following_list', $logged_user->id) }}" class="btn btn-primary">{{ $following }} Following</a>
                         </p>
-                        <div class="row">
+                        <div class="">
                             <div class="col-md-6"><a href="{{ url('/user', $logged_user->username) }}" title="">Tweets</a></div>
                             <div class="col-md-6 ">{{ $number_of_tweet }}</div>
                         </div>

@@ -36,7 +36,7 @@
 
 					var currentPageUrl = window.location.href;
 
-					$('.media-list').load(currentPageUrl+' .media-list');
+					$('.row').load(currentPageUrl+' .row');
 
 				})
 				.fail(function(){

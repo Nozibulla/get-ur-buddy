@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8">
 
-                <div class="row ">
+                <div class="">
                     <div class="">
                         <!-- TWEET WRAPPER START -->
                         <div class="twt-wrapper">
@@ -37,7 +37,7 @@
                                             <div class="media-body">
                                                @if (Auth::user()->id == $tweet->user_id)
                                                <span class="text-muted pull-right">
-                                                <a href="#" title="">
+                                                <a href="#" title="" class="delete_tweet" data-id = "{{ $tweet->id }}">
                                                     <small class="text-muted">
                                                         <h4><i class="fa fa-trash" ></i></h4>
                                                     </small>
@@ -76,7 +76,7 @@
                             <a href="{{ url('/following_list', $user->id) }}" class="btn btn-primary">{{ $following }} Following</a>
 
                         </p>
-                        <div class="row">
+                        <div class="">
                             <div class="col-md-6"><a href="{{ url('/user', $user->username) }}" title="">Tweets</a></div>
                             <div class="col-md-6 ">{{ $number_of_tweet }}</div>
                         </div>
