@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{!! csrf_token() !!}">
 
-    <title>Twitter</title>
+    <title>GetUrByddy</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
@@ -28,7 +28,7 @@
     </style>
 </head>
 <body id="app-layout">
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-static-top" style="margin-top: -20px;">
         <div class="container">
             <div class="navbar-header">
 
@@ -42,8 +42,8 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="../images/logo.png" alt="logo">
+                    <a style="color:#33CCFF; margin-top: -20px;" class="navbar-brand" href="{{ url('/') }}">
+                        <h3><strong >GetUrByddy</strong></h3>
                     </a>
                 </div>
 
@@ -82,7 +82,7 @@
                     width:'100px'
                 });
 
-            </script>
+        </script>
             <script src="../js/app.js"></script>
         </body>
         </html>

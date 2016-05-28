@@ -43,8 +43,4 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/following_list/{id}', 'TweetController@followingList');
 
-
-
-
-
 });

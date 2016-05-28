@@ -32,7 +32,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Tweet');
     }
 
-
     // This function allows us to get a list of users following us
     public function followers()
     {

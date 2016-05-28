@@ -26,7 +26,9 @@ class TweetController extends Controller
 		$tweets = new Tweet;
 
 		$tweets->tweet = htmlentities($this->save_url_as_link($request->tweet));
+
 		$tweets->user_id = $request->user_id;
+		
 		$tweets->save();
 
 		return redirect('home');
