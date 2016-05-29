@@ -61,6 +61,7 @@
                         
                         @else
                         <li><a href="{{ url('/') }}"><i class="fa fa-btn fa-home"></i>Home</a></li>
+                        <li><a href="{{ url('/user_list') }}"><i class="fa fa-btn fa-user"></i>UserList</a></li>
                         <li><a href="{{ url('/find_friend') }}"><i class="fa fa-btn fa-user"></i>Find Friends</a></li>
                         <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                         @endif

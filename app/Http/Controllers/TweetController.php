@@ -60,6 +60,22 @@ class TweetController extends Controller
 	}
 
 	/**
+	 * Uselist of 30 users
+	 */
+	
+	public function userList(Request $request)
+	{
+		$users = User::simplePaginate(30);
+		foreach ($users as $user) {
+
+			$user['latest_tweet'] = Tweet::select('tweet', 'created_at')->orderBy('created_at', 'desc')->where('user_id', $user->id)->first();
+		}
+
+		return view('user/user_list', compact('users', 'selected', 'query'));
+
+	}
+
+	/**
 	 * Show Find friend Page
 	 */
 

@@ -27,6 +27,8 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/find_friend', 'TweetController@findFriendPage');
 
+	Route::get('/user_list', 'TweetController@userList');
+
 	Route::get('/find_friend_result', 'TweetController@findFriend');
 
 	// Route::get('/find_friend_result', 'TweetController@findFriend');
