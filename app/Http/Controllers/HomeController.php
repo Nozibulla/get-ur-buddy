@@ -19,6 +19,14 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
+    public function session(Request $request)
+    {
+        $value = $request->session()->all();
+
+        return $value;
+    }
+
     /**
      * Show the Users Timeline with Tweets and follower and following lists and Number of Tweets.
      *

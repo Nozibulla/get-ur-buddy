@@ -23,6 +23,8 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/home', 'HomeController@index');
 
+		Route::get('session', 'HomeController@session');
+
 	Route::post('/tweet', 'TweetController@saveTweet');
 
 	Route::get('/find_friend', 'TweetController@findFriendPage');

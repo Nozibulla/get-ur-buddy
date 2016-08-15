@@ -94,7 +94,6 @@ class TweetController extends Controller
 
 		$selected = $request->select_option;
 
-		// return $selected;
 
 		if($selected && $query){
 
@@ -119,11 +118,7 @@ class TweetController extends Controller
 
 				return view('user/search_result_tweet', compact('tweets', 'selected', 'query'));
 				
-			}
-
-
-
-			
+			}	
 
 		}
 	}
