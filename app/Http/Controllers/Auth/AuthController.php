@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Todo;
 
 class AuthController extends Controller
 {
@@ -60,6 +62,35 @@ class AuthController extends Controller
             'email' => 'required|email|max:100|unique:users',
             'password' => 'required|min:4|max:8|confirmed',
         ]);
+    }
+
+    public function todolist()
+    {
+        return $todos = Todo::all();
+    }
+
+    public function saveTodo(Request $request)
+    {
+        $todo = new Todo;
+        $todo->id = $request->id;
+        $todo->text = $request->text;
+        $todo->completed = $request->completed;
+        $todo->save();
+
+    }
+
+    public function edittodo(Request $request)
+    {
+        $todo = Todo::findorFail($request->id);
+        // return $todo;
+        $todo->completed = $request->completed;
+        $todo->save();
+    }
+
+    public function deleteTodo(Request $request)
+    {
+        $todo = Todo::findorFail($request->id);
+        $todo->delete();
     }
 
     /**

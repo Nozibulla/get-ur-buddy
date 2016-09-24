@@ -41,6 +41,9 @@ $app->singleton(
     App\Exceptions\Handler::class
 );
 
+header('Access-Control-Allow-Headers: Origin, Content-Type, x-access-token, Authorization');
+header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH');
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application

@@ -11,7 +11,16 @@
 |
 */
 
+header('Access-Control-Allow-Origin:  *');
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
+// Route::group(['middleware' => 'cors'], function(){
+    Route::get('todo-list', 'Auth\AuthController@todolist');
+    Route::post('save-todo', 'Auth\AuthController@saveTodo');
+    Route::post('edit-todo', 'Auth\AuthController@editTodo');
+    Route::post('delete-todo', 'Auth\AuthController@deleteTodo');
+// });
 
 Route::group(['middleware' => 'web'], function () {
 
